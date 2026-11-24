@@ -1,0 +1,23 @@
+{
+  "name": "동화작가 노영희",
+  "short_name": "노영희",
+  "lang": "ko",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#fffefb",
+  "theme_color": "#fffefb",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
