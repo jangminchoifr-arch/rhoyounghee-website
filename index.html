@@ -260,6 +260,68 @@ footer img{width:min(360px,70vw);mix-blend-mode:multiply;opacity:.9}
 @media(max-width:760px){.story,.about,.contact .wrap{grid-template-columns:minmax(0,1fr)}.stick{display:none}.step{min-height:auto;padding:22px 0}.step:first-child{padding-bottom:22px}.strip{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;margin:18px -16px 0;padding:0 16px;scrollbar-width:none}.strip::-webkit-scrollbar{display:none}.strip img{flex:0 0 84%;scroll-snap-align:center;background:#fff;border:1px solid var(--line);padding:6px}.striphint{display:block;font-size:13px;color:var(--soft);margin:8px 0 14px}}
 @media(max-width:600px){.stories li{font-size:15px;padding:6px 0}.sheet h3{font-size:24px}.labels{font-size:13px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.cell span,.rev{transition:none;opacity:1;transform:none}.caret,.mspaper,.hero-bg,.riverwrap .msriver,.riverwrap::after,.glints i,.frame img.on,.sheet.swap{animation:none}.book,.frame img,.pencil-u path,.ambient{transition:none}.pencil-u path{stroke-dashoffset:0}}
+
+/* 이야기의 강물 연보 */
+.about-side{align-self:end}
+.about-side .facts{grid-template-columns:minmax(0,1fr);margin-top:0;padding:22px 24px;background:#fff;border:1px solid var(--line)}
+.rtl-wrap{display:block;margin-top:clamp(48px,7vw,88px)}
+.rtl-head{text-align:center;max-width:34em;margin:0 auto clamp(20px,3vw,36px)}
+.rtl-title{font-family:"Gowun Batang",serif;font-size:clamp(26px,3.4vw,34px);font-weight:400;margin:0 0 10px}
+.rtl-head p:last-child{color:var(--soft);margin:0}
+.rtl{position:relative;--wc:#4287c5}
+.rtl-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.rtl-svg path{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.rtl-bed{stroke:var(--wc);stroke-opacity:.09;stroke-width:30}
+.rtl-w1{stroke:var(--wc);stroke-opacity:.5;stroke-width:11}
+.rtl-w2{stroke:#2f7fb5;stroke-opacity:.75;stroke-width:2.5;transform:translate(-3px,0)}
+.rtl-list{list-style:none;margin:0;padding:0;position:relative}
+.rs{display:grid;grid-template-columns:minmax(0,1fr) 120px minmax(0,1fr);align-items:center;padding:clamp(18px,2.6vw,30px) 0}
+.rs .stone{grid-column:2;grid-row:1;justify-self:center;width:30px;height:22px;border-radius:52% 48% 45% 55%/58% 52% 48% 42%;background:#ece7db;border:1.5px solid #c9c1ad;box-shadow:0 3px 0 rgba(120,110,90,.18);position:relative;z-index:1;transition:background .5s,border-color .5s,transform .5s}
+.rs .rc{grid-row:1;grid-column:1;text-align:right;padding:6px 0;max-width:30em;justify-self:end}
+.rs:nth-child(even) .rc{justify-self:start}
+.rs+.rs{margin-top:clamp(-90px,-6vw,-40px)}
+.rs:nth-child(even) .rc{grid-column:3;text-align:left}
+.ry{font-family:"Gowun Batang",serif;font-size:clamp(22px,2.6vw,28px);color:var(--blue);margin:0;line-height:1.2}
+.rc h4{font-family:"Gowun Batang",serif;font-size:19px;font-weight:700;margin:4px 0 8px}
+.rd{margin:0;font-size:15.5px;line-height:1.75}
+.rm{margin:8px 0 0;font-size:14px;color:var(--soft);line-height:1.65}
+.rm a,.rli a,.rwk{color:var(--blue);text-underline-offset:3px}
+.rli{list-style:none;margin:10px 0 0;padding:0;font-size:14px;color:var(--soft);line-height:1.65}
+.rli li{padding:2px 0}
+.rwk{display:inline-block;margin-top:10px;font-size:14px}
+.rbk{display:flex;gap:16px;align-items:flex-start}
+.rs:nth-child(odd) .rbk{flex-direction:row-reverse}
+.rcov{width:66px;height:auto;flex:none;box-shadow:3px 4px 0 rgba(110,160,120,.14);border:1px solid var(--line);background:#fff}
+.rcov:not([src]){display:none}
+.rph{margin:14px 0 4px;background:#fff;border:1px solid var(--line);padding:8px 8px 10px;display:inline-block;max-width:100%;transform:rotate(-.8deg);box-shadow:4px 6px 0 rgba(110,160,120,.08)}
+.rs:nth-child(odd) .rph{transform:rotate(.8deg)}
+.rph img{display:block;width:min(340px,100%);height:auto}
+.rph figcaption{margin-top:8px;font-size:13px;color:var(--soft);text-align:left}
+.rq{margin:12px 0 0;font-family:"Gowun Batang",serif;font-size:16px;line-height:1.8;color:var(--ink);border-left:2px solid var(--ochre);padding-left:14px;text-align:left}
+.rs:nth-child(odd) .rq{border-left:0;border-right:2px solid var(--ochre);padding:0 14px 0 0;text-align:right}
+.rs.now .ry::after{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--blue);margin-left:10px;vertical-align:middle;animation:rtlpulse 2s ease-in-out infinite}
+@keyframes rtlpulse{50%{opacity:.25}}
+.rbird{position:absolute;left:0;top:0;width:92px;pointer-events:none;z-index:3;opacity:0;transition:transform .45s cubic-bezier(.3,.7,.3,1),opacity .5s;will-change:transform}
+.rbird.show{opacity:1}
+.rbird img{display:block;width:100%;height:auto;transform-origin:25% 70%;animation:rbob 1.6s ease-in-out infinite}
+@keyframes rbob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-5px) rotate(-4deg)}}
+.rtl.js .rc{opacity:.38;transform:translateY(10px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1)}
+.rtl.js .rs.on .rc{opacity:1;transform:none}
+.rtl.js .rs.on .stone{background:#d7e6f3;border-color:#7fa9cf;transform:scale(1.08)}
+@media(max-width:760px){
+.about-side{align-self:auto}
+.rs{grid-template-columns:44px minmax(0,1fr);align-items:start;padding:16px 0}
+.rs .stone{grid-column:1;margin-top:9px;width:24px;height:18px}
+.rs .rc,.rs:nth-child(even) .rc{grid-column:2;text-align:left;padding:0 0 0 6px;justify-self:stretch;max-width:none}
+.rs+.rs{margin-top:0}
+.rs:nth-child(odd) .rbk{flex-direction:row}
+.rs:nth-child(odd) .rq{border-right:0;border-left:2px solid var(--ochre);padding:0 0 0 14px;text-align:left}
+.rtl-bed{stroke-width:18}.rtl-w1{stroke-width:7}
+.rcov{width:56px}
+.rbird{width:54px}
+.rtl-head{text-align:left}
+}
+@media(prefers-reduced-motion:reduce){.rbird{transition:none}.rbird img{animation:none}.rtl.js .rc{opacity:1;transform:none;transition:none}.rs.now .ry::after{animation:none}}
 </style>
 </head>
 <body>
@@ -405,28 +467,83 @@ footer img{width:min(360px,70vw);mix-blend-mode:multiply;opacity:.9}
 <div class="portrait"><img src="author-profile.jpg" alt="동화작가 노영희" width="320" height="400"><p>노영희<br>대구 출생<br>대구대학교 대학원 수학</p></div>
 <p>잠자리에서 지어 들려주던 이야기는 1996년 샘터의 ‘엄마가 쓴 동화’ 가작으로 처음 지면에 실렸고, 2004년 매일신문 신춘문예 동화 당선으로 이어졌습니다. 그 뒤로 스무 해 넘게 『월간문학』, 『아동문학평론』, 『대구문학』, 『대구아동문학』 등에 꾸준히 동화를 발표해 왔습니다.</p>
 <p>어떻게 살아가야 할지를 스스로 묻게 하는 철학동화를 씁니다. 청동 새와 꼬마 기차, 날마다 자라는 작은 섬처럼 사람이 아닌 것들에 마음을 불어넣어, 아이들이 자기 안의 외로움과 그리움을 다정하게 마주하도록 이끕니다. 책에 실리는 그림도 직접 그립니다.</p>
+</div>
+<div class="about-side">
 <div class="facts">
 <div><h3>수상</h3><p>대구의 작가상(2025, 대구문인협회), 대구문인협회 올해의 작품상(2019), 영남아동문학상(2017)</p></div>
 <div><h3>창작 지원</h3><p>대구문화예술진흥원 작품집 발간지원(2025), 개인예술가 창작지원(2020) 선정</p></div>
 <div><h3>활동</h3><p>한국문인협회, <a href="https://kacl.net" target="_blank" rel="noopener">한국아동문학인협회</a>, 대구문인협회, 대구아동문학회, 대구아동청소년문학가협회 회원</p></div>
 </div>
 </div>
-<div>
-<ol class="tl" aria-label="연보">
-<li><b>1996</b><span>샘터 ‘엄마가 쓴 동화’ 가작, 「해님달력 달님달력」</span></li>
-<li><b>2004</b><span>매일신문 신춘문예 동화 당선, 「천둥벌거숭이의 눈물」(심사 심후섭)</span></li>
-<li><b>2015</b><span>『아동문학평론』 여름호에 동화 「괜찮아! 나는 뻥새니까」 발표</span></li>
-<li><b>2016</b><span>첫 창작동화집 『괜찮아! 나는 뻥새니까』(아동문학평론)</span></li>
-<li><b>2017</b><span>영남아동문학상</span></li>
-<li><b>2019</b><span>대구문인협회 올해의 작품상, 「아버지의 각설이 타령」</span></li>
-<li><b>2020</b><span>장편동화 『아이도로 간다』(학이사어린이)<br>대구문화예술진흥원 개인예술가 창작지원 선정</span></li>
-<li><b>2025</b><span>판타지 심리동화 『마녀 엄마』(브로콜리숲)<br>대구문화예술진흥원 작품집 발간지원 선정<br>대구문학관 『마녀 엄마』 낭독회<br>대구의 작가상(대구문인협회)</span></li>
-<li><b>2026</b><span>6~7월 범어도서관 도서 전시 「따로 또 같이, 이야기 씨앗을 심다」<br>7월 무학숲 어린이 도서관 「책짝꿍 캠프」(『마녀 엄마』)<br>11월 범어도서관 대구아동청소년문학가협회 〈어린이 큰잔치〉</span></li>
+</div>
+<div class="wrap rtl-wrap">
+<div class="rtl-head">
+<p class="kind">1996 – 2026</p>
+<h3 class="rtl-title">이야기의 강물</h3>
+<p>아들에게 들려주던 이야기 한 줄기가 서른 해 동안 흘러온 물길입니다. 징검다리마다 그해의 이야기가 놓여 있습니다.</p>
+</div>
+<div class="rtl" id="rtl">
+<svg class="rtl-svg" aria-hidden="true" focusable="false"><path class="rtl-bed"/><path class="rtl-w1"/><path class="rtl-w2"/></svg>
+<span class="rbird" aria-hidden="true"><img src="data:image/webp;base64,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" alt="" width="260" height="110"></span>
+<ol class="rtl-list" aria-label="연보">
+<li class="rs"><span class="stone" aria-hidden="true"></span><div class="rc">
+<p class="ry">1996</p><h4>첫 씨앗</h4>
+<p class="rd">아들에게 밤마다 지어 들려주던 이야기 하나가 처음으로 지면에 실렸습니다.</p>
+<p class="rm">샘터 ‘엄마가 쓴 동화’ 가작 · 「해님달력 달님달력」</p>
+</div></li>
+<li class="rs"><span class="stone" aria-hidden="true"></span><div class="rc">
+<p class="ry">2004</p><h4>동화작가가 되다</h4>
+<p class="rd">매일신문 신춘문예에 「천둥벌거숭이의 눈물」이 당선되며 동화작가로 첫발을 내디뎠습니다.</p>
+<figure class="rph"><img src="debut-2004.jpg" alt="2004년도 매일신문 신춘문예 시상식장의 동화작가 노영희" width="1000" height="664" loading="lazy"><figcaption>2004년 1월 10일, 신춘문예 시상식</figcaption></figure>
+<p class="rm">심사 심후섭 · <a href="https://www.imaeil.com/page/view/2004010210500080646" target="_blank" rel="noopener">당선소감</a> · <a href="https://www.imaeil.com/page/view/2004010210500088357" target="_blank" rel="noopener">심사평</a></p>
+<a class="rwk" href="#press" data-y="2004" hidden></a>
+</div></li>
+<li class="rs"><span class="stone" aria-hidden="true"></span><div class="rc">
+<p class="ry">2015 – 2017</p><h4>첫 책, 뻥새</h4>
+<div class="rbk"><img class="rcov" data-cover="bbeong" alt="『괜찮아! 나는 뻥새니까』 표지" width="420" height="600"><p class="rd">문예지에 발표한 「괜찮아! 나는 뻥새니까」가 이듬해 직접 그림까지 그린 첫 동화집이 되었고, 영남아동문학상으로 이어졌습니다.</p></div>
+<p class="rm">2015 『아동문학평론』 여름호 발표 · 2016 첫 동화집(아동문학평론) · 2017 영남아동문학상</p>
+</div></li>
+<li class="rs"><span class="stone" aria-hidden="true"></span><div class="rc">
+<p class="ry">2019</p><h4>올해의 작품상</h4>
+<p class="rd">말없이 떠났다 돌아온 아버지를 아이의 눈으로 그린 「아버지의 각설이 타령」으로 대구문인협회 올해의 작품상을 받았습니다.</p>
+<blockquote class="rq">아버지가 집을 나갔다. 아무런 말도 없이 나간 아버지는 오랫동안 집으로 돌아오지 않았다.</blockquote>
+<p class="rm"><a href="#shorts" class="rlink">첫 문단 이어 읽기</a> · <a href="https://www.imaeil.com/page/view/2019121911533701071" target="_blank" rel="noopener">시상 기사</a></p>
+<a class="rwk" href="#press" data-y="2019" hidden></a>
+</div></li>
+<li class="rs"><span class="stone" aria-hidden="true"></span><div class="rc">
+<p class="ry">2020</p><h4>날마다 자라는 섬</h4>
+<div class="rbk"><img class="rcov" data-cover="aido" alt="『아이도로 간다』 표지" width="420" height="600"><p class="rd">날마다 조금씩 자라는 작은 섬 ‘아이도’에서 다섯 아이가 이레를 보내는 장편동화 『아이도로 간다』를 펴냈습니다.</p></div>
+<p class="rm">학이사어린이 · 대구문화예술진흥원 개인예술가 창작지원 선정</p>
+<a class="rwk" href="#press" data-y="2020" hidden></a>
+</div></li>
+<li class="rs"><span class="stone" aria-hidden="true"></span><div class="rc">
+<p class="ry">2022</p><h4>작품 세계를 조명받다</h4>
+<p class="rd">두 문예지가 작가 특집을 꾸려 작품론과 문학 자전을 함께 실었습니다.</p>
+<p class="rm">『아동문학평론』 봄호 「아평이 만난 작가」(김동혁 작품론) · 『대구문학』 174호 「작품 깊이 읽기」(최병갑 해설)</p>
+<a class="rwk" href="#press" data-y="2022" hidden></a>
+</div></li>
+<li class="rs"><span class="stone" aria-hidden="true"></span><div class="rc">
+<p class="ry">2025</p><h4>『마녀 엄마』와 대구의 작가상</h4>
+<div class="rbk"><img class="rcov" data-cover="witch" alt="『마녀 엄마』 표지" width="420" height="600"><p class="rd">판타지 심리동화 『마녀 엄마』를 펴내 낭독회와 출간기념회로 독자를 만났고, 그해 대구의 작가상을 받았습니다.</p></div>
+<ul class="rli">
+<li>대구문화예술진흥원 작품집 발간지원 선정</li>
+<li>8월 대구문학관 ‘3시의 신간 낭독회’ · <a href="https://www.podbbang.com/channels/1780905/episodes/25167499" target="_blank" rel="noopener">팟빵에서 듣기</a></li>
+<li>10월 김광석 홀 출간기념회</li>
+<li>12월 대구의 작가상(대구문인협회)</li>
+</ul>
+<a class="rwk" href="#press" data-y="2025" hidden></a>
+</div></li>
+<li class="rs now"><span class="stone" aria-hidden="true"></span><div class="rc">
+<p class="ry">2026</p><h4>지금도 흐르는 중</h4>
+<p class="rd">세 권의 책이 도서관에 나란히 놓이고, 아이들과 책갈피와 액자를 만들며 이야기를 나눕니다.</p>
+<ul class="rli">
+<li>6~7월 범어도서관 도서 전시 「따로 또 같이, 이야기 씨앗을 심다」</li>
+<li>7월 무학숲 어린이 도서관 「책짝꿍 캠프」(『마녀 엄마』)</li>
+<li>11월 범어도서관 대구아동청소년문학가협회 〈어린이 큰잔치〉</li>
+</ul>
+<a class="rwk" href="#press" data-y="2026" hidden></a>
+</div></li>
 </ol>
-<figure class="debut-card">
-<img src="debut-2004.jpg" alt="2004년도 매일신문 신춘문예 시상식의 동화작가 노영희" loading="lazy">
-<figcaption><b>2004 매일신문 신춘문예 시상식</b><span>2004년 1월 10일 · 「천둥벌거숭이의 눈물」</span></figcaption>
-</figure>
 </div>
 </div>
 </section>
@@ -617,6 +734,65 @@ const unlock=()=>{if(bgmReady&&!bgmMutedByUser&&bgmAudio.paused)tryPlay();if(!bg
 ['pointerdown','touchstart','keydown'].forEach(ev=>addEventListener(ev,unlock,{passive:true}));
 }
 }
+</script>
+<script>
+(()=>{
+const box=document.getElementById('rtl');if(!box)return;
+const bird=box.querySelector('.rbird');let face=1;
+const svg=box.querySelector('.rtl-svg'),bed=svg.querySelector('.rtl-bed'),w1=svg.querySelector('.rtl-w1'),w2=svg.querySelector('.rtl-w2');
+const items=[...box.querySelectorAll('.rs')];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* 책장에서 표지 이미지를 가져와 작은 표지로 씀 */
+box.querySelectorAll('.rcov[data-cover]').forEach(im=>{const src=document.querySelector('#book-'+im.dataset.cover+' img');if(src)im.src=src.src;});
+/* 그해 발표작 수 연결 */
+const works=document.querySelector('details.works');
+box.querySelectorAll('.rwk').forEach(a=>{const y=a.dataset.y;const row=[...document.querySelectorAll('.wyear')].find(r=>r.querySelector('b')&&r.querySelector('b').textContent.trim()===y);
+ if(!row)return;const n=row.querySelectorAll('li').length;row.id='w-'+y;a.hidden=false;a.textContent=`${y}년 발표작 ${n}건 보기`;a.href='#w-'+y;
+ a.addEventListener('click',e=>{if(works)works.open=true;});});
+const fl=box.querySelector('a[href="#shorts"]');if(fl)fl.addEventListener('click',()=>{const c=document.querySelector('#shorts details');if(c)c.open=true;});
+box.classList.add('js');
+let len=0,ys=[],ls=[],H=0;
+const build=()=>{
+ const W=box.clientWidth;H=box.clientHeight;svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+ const br=box.getBoundingClientRect();
+ const pts=items.map(li=>{const r=li.querySelector('.stone').getBoundingClientRect();return [r.left+r.width/2-br.left,r.top+r.height/2-br.top];});
+ const mob=W<761, A=mob?14:Math.min(90,W*.08);
+ let d=`M${pts[0][0]} 0 C${pts[0][0]+A} ${pts[0][1]*.4} ${pts[0][0]-A*.6} ${pts[0][1]*.7} ${pts[0][0]} ${pts[0][1]}`;
+ for(let i=1;i<pts.length;i++){const [x1,y1]=pts[i-1],[x2,y2]=pts[i],dy=y2-y1,s=i%2?1:-1;
+  d+=` C${x1+A*s} ${y1+dy*.45} ${x2-A*s} ${y2-dy*.45} ${x2} ${y2}`;}
+ const [lx,ly]=pts[pts.length-1];d+=` C${lx-A} ${ly+(H-ly)*.4} ${lx+A*.5} ${ly+(H-ly)*.7} ${lx} ${H}`;
+ [bed,w1,w2].forEach(p=>p.setAttribute('d',d));
+ len=w1.getTotalLength();ys=[];ls=[];const N=240;for(let k=0;k<=N;k++){const l=len*k/N;ys.push(w1.getPointAtLength(l).y);ls.push(l);}
+ [w1,w2].forEach(p=>{p.style.strokeDasharray=len;});
+ items.forEach((li,i)=>li.dataset.cy=pts[i][1]);
+ paint(true);
+};
+const lenAt=y=>{if(y<=0)return 0;if(y>=H)return len;let lo=0,hi=ys.length-1;while(hi-lo>1){const m=(lo+hi)>>1;if(ys[m]<y)lo=m;else hi=m;}return ls[hi];};
+let last=-1;
+const paint=(force)=>{
+ const top=box.getBoundingClientRect().top;
+ const y=reduce?H:Math.max(0,Math.min(H,innerHeight*.66-top));
+ if(!force&&Math.abs(y-last)<1)return;last=y;
+ const L=lenAt(y);[w1,w2].forEach(p=>p.style.strokeDashoffset=len-L);
+ items.forEach(li=>li.classList.toggle('on',+li.dataset.cy<=y+8));
+ if(bird){
+  if(L<2){bird.classList.remove('show');return;}
+  const P=w1.getPointAtLength(L),Q=w1.getPointAtLength(Math.max(0,L-14));
+  const dx=P.x-Q.x,dy=P.y-Q.y;
+  const bw=bird.offsetWidth,bh=bw*110/260,mob=box.clientWidth<761;let tf;
+  if(mob){ /* 휴대폰: 강줄기를 따라 아래로 내려가는 자세 */
+   tf=`translate(${Math.max(0,P.x-bw*.42).toFixed(1)}px,${(P.y-bh-10).toFixed(1)}px)`;
+  }else{
+   if(dx>1.2)face=-1;else if(dx<-1.2)face=1;   /* 새 머리는 원래 왼쪽: 오른쪽으로 흐를 땐 좌우 반전 */
+   tf=`translate(${(P.x-bw/2).toFixed(1)}px,${(P.y-bh-14).toFixed(1)}px) scaleX(${face})`;
+  }
+  bird.style.transform=tf;
+  bird.classList.add('show');
+ }
+};
+let tk=false;addEventListener('scroll',()=>{if(!tk){tk=true;requestAnimationFrame(()=>{paint();tk=false;});}},{passive:true});
+let pw=0,ph=0;new ResizeObserver(()=>{const w=box.clientWidth,h=box.clientHeight;if(Math.abs(w-pw)>1||Math.abs(h-ph)>2){pw=w;ph=h;build();}}).observe(box);
+})();
 </script>
 </body>
 </html>
