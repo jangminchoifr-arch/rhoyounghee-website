@@ -322,6 +322,16 @@ footer img{width:min(360px,70vw);mix-blend-mode:multiply;opacity:.9}
 .rtl-head{text-align:left}
 }
 @media(prefers-reduced-motion:reduce){.rbird{transition:none}.rbird img{animation:none}.rtl.js .rc{opacity:1;transform:none;transition:none}.rs.now .ry::after{animation:none}}
+
+/* 첫 화면 서명 오프닝 */
+.hsig{position:absolute;left:0;top:0;z-index:4;transform-origin:0 0;pointer-events:none;will-change:transform}
+.hsig img{display:block;width:100%;height:auto;position:relative;z-index:1}
+.hsig::before{content:"";position:absolute;inset:-28% -12% -60%;z-index:0;background:radial-gradient(closest-side,rgba(255,254,251,.86),rgba(255,254,251,.55) 55%,rgba(255,254,251,0));opacity:var(--glow,1)}
+.hsig-cap{position:relative;z-index:1;margin:6px 0 0;text-align:center;font-family:"Gowun Batang",serif;font-size:clamp(17px,1.9vw,22px);color:var(--ink);letter-spacing:.04em;opacity:var(--cap,1)}
+.hsig-cap span{display:block;font-family:"Noto Sans KR",sans-serif;font-size:.58em;letter-spacing:.32em;color:var(--soft);margin-top:4px}
+.ms .mspaper{animation:none;opacity:var(--paper-o,1)}
+.brand-logo{transition:opacity .45s}
+body.sig-open .brand-logo{opacity:0}
 </style>
 </head>
 <body>
@@ -338,6 +348,7 @@ footer img{width:min(360px,70vw);mix-blend-mode:multiply;opacity:.9}
 <div class="msstick">
 <div class="hero-bg" id="herobg" aria-hidden="true"></div>
 <div class="hero-veil" aria-hidden="true"></div>
+<div class="hsig" id="hsig" aria-hidden="true"><img src="signature-sig21.webp" alt="" width="1440" height="475" decoding="async" fetchpriority="high"><p class="hsig-cap">동화작가 노영희 <span>RHO YOUNG HEE</span></p></div>
 <p class="msnote" id="msnote">아래로 내리면 원고지가 한 칸씩 채워집니다</p>
 <div class="mspaper" aria-hidden="true"><div class="msgrid" id="msgrid"></div></div>
 <span class="hero-cap">금호강이 내다보이는 집에서 바라본 풍경</span>
@@ -659,11 +670,31 @@ if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();const n=(cur+(e
 });
 show(2);
 
-const MS={title:"동화작가 노영희",paras:["시인을 꿈꾸던 아이는 엄마가 되어 아들에게 밤마다 이야기를 지어 들려주었습니다.","그 이야기가 동화가 되었습니다. 금호강이 내다보이는 집에서, 오늘도 마음을 어루만지는 이야기를 씁니다."]};
+const MS={title:"마음에 이야기를 심다",paras:["시인을 꿈꾸던 아이는 엄마가 되어 아들에게 밤마다 이야기를 지어 들려주었습니다.","그 이야기가 동화가 되었습니다. 금호강이 내다보이는 집에서, 오늘도 마음을 어루만지는 이야기를 씁니다."]};
 const grid=document.getElementById('msgrid'),msSec=document.querySelector('.ms'),note=document.getElementById('msnote');
+/* 서명 오프닝: 큰 서명이 원고지 둘째 줄(이름 줄) 오른쪽으로 내려앉음 */
+const hsig=document.getElementById('hsig'),sigImg=hsig?hsig.querySelector('img'):null,SIG_R=1440/475,P0=.3;
+let curCols=0,sigG=null,sigHid=false;
+const sigGeom=()=>{if(!hsig||!cells.length)return;
+ const st=document.querySelector('.msstick'),sr=st.getBoundingClientRect(),W=st.clientWidth,H=st.clientHeight;
+ const mob=W<700,sw=mob?Math.min(W*.86,430):Math.min(W*.56,700),sh=sw/SIG_R;
+ const a=cells[curCols+curCols-2].getBoundingClientRect(),b=cells[2*curCols+curCols-2].getBoundingClientRect();
+ const box=b.bottom-a.top,th=box*.88,tw=th*SIG_R;
+ sigG={sw,sx:(W-sw)/2,sy:Math.max(64,H*(mob?.34:.36)-sh/2),tw,tx:a.right-sr.left-tw,ty:a.top-sr.top+box*.02};
+ hsig.style.width=sw+'px';};
+const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+const sigPaint=p=>{if(!sigG)return;
+ const t=ease(Math.min(1,Math.max(0,p/P0))),g=sigG,s=(g.sw+(g.tw-g.sw)*t)/g.sw;
+ const x=g.sx+(g.tx-g.sx)*t,y=g.sy+(g.ty-g.sy)*t;
+ hsig.style.transform=`translate(${x.toFixed(1)}px,${y.toFixed(1)}px) scale(${s.toFixed(4)})`;
+ hsig.style.setProperty('--cap',Math.max(0,1-t*2.2).toFixed(3));
+ hsig.style.setProperty('--glow',Math.max(0,1-t*1.6).toFixed(3));
+ grid.parentElement.style.setProperty('--paper-o',Math.min(1,Math.max(0,(t-.15)/.7)).toFixed(3));
+ const hid=t<.97;if(hid!==sigHid){sigHid=hid;last=-1;}
+ document.body.classList.toggle('sig-open',t<.98);};
 let cells=[],writable=[],last=-1,caret=null;
 const build=cols=>{const rows=[];const blank=()=>Array(cols).fill(null);
-let r=blank();const t=[...MS.title];const tp=Math.floor((cols-t.length)/2);t.forEach((c,i)=>r[tp+i]={c,pre:1,t:1});rows.push(r);rows.push(blank());
+let r=blank();const t=[...MS.title];const tp=Math.floor((cols-t.length)/2);t.forEach((c,i)=>r[tp+i]={c,pre:1,t:1});rows.push(r);rows.push(blank());rows.push(blank());
 const PUN='.,!?”’」』';
 for(const p of MS.paras){r=blank();let x=1;for(const c of [...p]){if(x>=cols){if(PUN.includes(c)&&r[cols-1]){r[cols-1].p=(r[cols-1].p||'')+c;continue;}rows.push(r);r=blank();x=0;if(c===' ')continue;}r[x]={c};x++;}rows.push(r);}
 return rows;};
@@ -676,20 +707,21 @@ const RH=1.22;let cols,cw,rows;
 if(maxW<520){for(const c of [12,13,14,15,16,18]){const w=maxW/c,rs=build(c);cols=c;rows=rs;cw=w;if((rs.length)*w*RH<=avail)break;}cw=Math.min(cw,avail/(rows.length*RH));}
 else{cols=20;rows=build(cols);cw=Math.min(maxW/cols,avail/(rows.length*RH));}
 paper.style.width=Math.round(cols*cw+ppad*2+4)+'px';
-grid.style.setProperty('--cols',cols);grid.style.setProperty('--cw',cw.toFixed(2)+'px');
+grid.style.setProperty('--cols',cols);curCols=cols;grid.style.setProperty('--cw',cw.toFixed(2)+'px');
 let html='';writable=[];let k=0;
 rows.forEach((row,ri)=>{row.forEach((o,ci)=>{const ch=o&&o.c!==' '?o.c:'';const cls='cell'+(ci===cols-1?' e':'')+(o&&o.pre?' pre':'')+(o&&o.t?' t':'');html+=`<div class="${cls}" data-k="${k}"><span>${esc(ch)}${o&&o.p?`<em class="pm">${esc(o.p)}</em>`:''}</span></div>`;if(o&&!o.pre&&o.c!==' ')writable.push(k);k++;});if(ri<rows.length-1)html+='<div class="gap"></div>';});
-grid.innerHTML=html+'<i class="caret" hidden></i>';caret=grid.querySelector('.caret');cells=[...grid.querySelectorAll('.cell')];last=-1;paint();
+grid.innerHTML=html+'<i class="caret" hidden></i>';caret=grid.querySelector('.caret');cells=[...grid.querySelectorAll('.cell')];last=-1;sigGeom();paint();
 };
 const paint=()=>{
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const r=msSec.getBoundingClientRect();const span=msSec.offsetHeight-innerHeight;
-const p=reduce?1:Math.min(1,Math.max(0,(-r.top)/(span*.9)));
+const p0=reduce?1:Math.min(1,Math.max(0,(-r.top)/(span*.9)));sigPaint(p0);
+const p=reduce?1:Math.min(1,Math.max(0,(p0-P0)/(1-P0)));
 if(!reduce){const riv=document.querySelector('.msriver');if(riv)riv.style.setProperty('--rx',((p-.5)*46).toFixed(1)+'px');const hbg=document.getElementById('herobg');if(hbg)hbg.style.setProperty('--hy',((p-.5)*28).toFixed(1)+'px');}
 const n=Math.round(p*writable.length);if(n===last)return;last=n;
 writable.forEach((k,i)=>cells[k].classList.toggle('w',i<n));
 if(n<writable.length){const c=cells[writable[n]],h=c.offsetHeight;caret.style.transform=`translate(${c.offsetLeft+c.offsetWidth*.22}px,${c.offsetTop+h*.18}px)`;caret.style.height=(h*.64)+'px';caret.hidden=false;}else caret.hidden=true;
-note.style.opacity=n>=writable.length?0:1;
+note.style.opacity=(n>=writable.length||sigHid)?0:1;
 };
 let ticking=false;
 const updateBar=()=>{if(pbar){const h=document.documentElement.scrollHeight-innerHeight;pbar.style.width=(h>0?Math.min(100,Math.max(0,(scrollY/h)*100)):0)+'%';}const hbg=document.getElementById('herobg');if(hbg&&!matchMedia('(prefers-reduced-motion: reduce)').matches){const f=Math.min(1,Math.max(0,scrollY/innerHeight));hbg.style.setProperty('--hy',(f*42).toFixed(1)+'px');}};
