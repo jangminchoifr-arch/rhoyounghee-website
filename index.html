@@ -102,7 +102,9 @@ h2{font-size:clamp(28px,3.4vw,38px);font-weight:400}
 h3{font-size:21px}
 p{margin:0 0 1em}
 nav{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 20px;padding:18px max(5vw,16px);max-width:calc(1160px + 10vw);margin:0 auto}
-.brand{font-family:"Gowun Batang",serif;font-weight:700;font-size:18px;color:var(--ink);text-decoration:none}
+.brand{display:inline-flex;align-items:center;color:var(--ink);text-decoration:none}
+.brand img{width:min(260px,65vw);height:auto}
+.brand:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
 .menu{display:flex;flex-wrap:wrap;gap:0 20px}
 .menu a{color:var(--ink);text-decoration:none;font-size:15px;padding:10px 0;border-bottom:1px solid transparent}
 .menu a:hover{border-bottom-color:var(--ink)}
@@ -248,7 +250,7 @@ footer img{width:min(360px,70vw);mix-blend-mode:multiply;opacity:.9}
 <div class="ambient" id="ambient" aria-hidden="true"></div>
 <div class="progress-bar" id="pbar" aria-hidden="true"></div>
 <nav aria-label="주 메뉴">
-<a class="brand" href="#top">동화작가 노영희</a>
+<a class="brand" href="#top"><img src="/brand-header.svg" alt="동화작가 노영희" width="1200" height="340" fetchpriority="high"></a>
 <div class="menu"><a href="#shelf">책</a><a href="#bbeongsae">대표작</a><a href="#shorts">단편</a><a href="#about">작가</a><a href="#press">기록</a><a href="#contact">글쓰기</a><a href="https://www.instagram.com/youngheerho/" target="_blank" rel="noopener">인스타그램</a></div>
 </nav>
 
