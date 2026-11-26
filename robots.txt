@@ -4,4 +4,4 @@ Allow: /
 User-agent: Yeti
 Allow: /
 
-Sitemap: https://noyounghee.kr/sitemap.xml
+Sitemap: https://rhoyounghee-website.pages.dev/sitemap.xml
