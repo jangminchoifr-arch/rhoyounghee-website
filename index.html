@@ -356,6 +356,35 @@ body.sig-open .brand-logo{opacity:0}
 .lang-sw a:hover{color:var(--ink)}
 .lang-sw span[aria-current="page"]{color:var(--paper);background:var(--ink)}
 @media(max-width:760px){.lang-sw{margin-left:0;margin-top:4px}}
+
+/* Author profile: editorial two-column composition */
+#about .about{
+  grid-template-columns:minmax(0,0.82fr) minmax(0,1.4fr);
+  grid-template-areas:"heading heading" "portrait copy" "facts copy";
+  gap:24px clamp(32px,5vw,64px);align-items:start;align-content:start
+}
+#about .about-head{grid-area:heading}
+#about .about-head h2{margin:0 0 12px}
+#about .portrait{grid-area:portrait;display:flex;flex-direction:column;align-items:flex-start;gap:14px;margin:0}
+#about .portrait img{display:block;width:min(100%,260px);height:auto;max-width:100%;border:5px solid #fff;box-shadow:0 1px 0 var(--line),3px 6px 16px rgba(40,50,45,.13);transform:none}
+#about .portrait p{font-size:14px;line-height:1.75;margin:0}
+#about .portrait p strong{display:inline-block;font-size:19px;font-family:"Gowun Batang",serif;color:var(--ink);font-weight:600;margin-bottom:3px}
+#about .about-copy{grid-area:copy;min-width:0;max-width:39em;font-size:17px;line-height:1.95;overflow-wrap:break-word}
+#about .about-copy p{margin:0 0 1.4em}
+#about .about-copy p:last-child{margin-bottom:0}
+#about .about-side{grid-area:facts;align-self:start;min-width:0}
+#about .about-side .facts{gap:14px;margin:0;padding:18px 20px;background:rgba(255,255,255,.82)}
+#about .about-side .facts>div+div{padding-top:13px;border-top:1px solid var(--line)}
+#about .about-side .facts h3{margin:0 0 5px}
+#about .about-side .facts p{font-size:14px;line-height:1.7;overflow-wrap:anywhere}
+@media(max-width:760px){
+  #about .about{grid-template-columns:minmax(0,1fr);grid-template-areas:"heading" "portrait" "copy" "facts";gap:22px}
+  #about .portrait{width:100%;max-width:100%}
+  #about .portrait img{width:min(100%,260px)}
+  #about .about-copy{max-width:none;font-size:16px;line-height:1.85}
+  #about .about-side .facts{padding:18px}
+}
+
 </style>
 </head>
 <body>
@@ -494,10 +523,12 @@ body.sig-open .brand-logo{opacity:0}
 
 <section class="band rule" id="about">
 <div class="wrap about">
-<div>
+<div class="about-head">
 <h2>이야기를 지어 들려주던 엄마에서 동화작가로</h2>
 <svg class="pencil-u" viewBox="0 0 180 10" aria-hidden="true"><path d="M2 6 C55 2, 120 9, 178 4"/></svg>
-<div class="portrait"><img src="author-profile.jpg" alt="동화작가 노영희" width="320" height="400"><p>노영희<br>대구 출생<br>대구대학교 대학원 수학</p></div>
+</div>
+<div class="portrait"><img src="author-profile.jpg" alt="동화작가 노영희" width="954" height="1280"><p><strong>노영희</strong><br>대구 출생<br>대구대학교 대학원 수학</p></div>
+<div class="about-copy">
 <p>잠자리에서 지어 들려주던 이야기는 1996년 샘터의 ‘엄마가 쓴 동화’ 가작으로 처음 지면에 실렸고, 2004년 매일신문 신춘문예 동화 당선으로 이어졌습니다. 그 뒤로 스무 해 넘게 『월간문학』, 『아동문학평론』, 『대구문학』, 『대구아동문학』 등에 꾸준히 동화를 발표해 왔습니다.</p>
 <p>어떻게 살아가야 할지를 스스로 묻게 하는 철학동화를 씁니다. 청동 새와 꼬마 기차, 날마다 자라는 작은 섬처럼 사람이 아닌 것들에 마음을 불어넣어, 아이들이 자기 안의 외로움과 그리움을 다정하게 마주하도록 이끕니다. 책에 실리는 그림도 직접 그립니다.</p>
 </div>

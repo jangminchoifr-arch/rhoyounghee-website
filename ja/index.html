@@ -352,6 +352,35 @@ body.sig-open .brand-logo{opacity:0}
 
 .scard[open] .stoggle::after{content:" 閉じる"}
 .scard:not([open]) .stoggle::after{content:" 冒頭を読む →"}
+
+/* Author profile: editorial two-column composition */
+#about .about{
+  grid-template-columns:minmax(0,0.82fr) minmax(0,1.4fr);
+  grid-template-areas:"heading heading" "portrait copy" "facts copy";
+  gap:24px clamp(32px,5vw,64px);align-items:start;align-content:start
+}
+#about .about-head{grid-area:heading}
+#about .about-head h2{margin:0 0 12px}
+#about .portrait{grid-area:portrait;display:flex;flex-direction:column;align-items:flex-start;gap:14px;margin:0}
+#about .portrait img{display:block;width:min(100%,260px);height:auto;max-width:100%;border:5px solid #fff;box-shadow:0 1px 0 var(--line),3px 6px 16px rgba(40,50,45,.13);transform:none}
+#about .portrait p{font-size:14px;line-height:1.75;margin:0}
+#about .portrait p strong{display:inline-block;font-size:19px;font-family:"Gowun Batang",serif;color:var(--ink);font-weight:600;margin-bottom:3px}
+#about .about-copy{grid-area:copy;min-width:0;max-width:39em;font-size:17px;line-height:1.95;overflow-wrap:break-word}
+#about .about-copy p{margin:0 0 1.4em}
+#about .about-copy p:last-child{margin-bottom:0}
+#about .about-side{grid-area:facts;align-self:start;min-width:0}
+#about .about-side .facts{gap:14px;margin:0;padding:18px 20px;background:rgba(255,255,255,.82)}
+#about .about-side .facts>div+div{padding-top:13px;border-top:1px solid var(--line)}
+#about .about-side .facts h3{margin:0 0 5px}
+#about .about-side .facts p{font-size:14px;line-height:1.7;overflow-wrap:anywhere}
+@media(max-width:760px){
+  #about .about{grid-template-columns:minmax(0,1fr);grid-template-areas:"heading" "portrait" "copy" "facts";gap:22px}
+  #about .portrait{width:100%;max-width:100%}
+  #about .portrait img{width:min(100%,260px)}
+  #about .about-copy{max-width:none;font-size:16px;line-height:1.85}
+  #about .about-side .facts{padding:18px}
+}
+
 </style>
 </head>
 <body>
@@ -486,10 +515,12 @@ body.sig-open .brand-logo{opacity:0}
 
 <section class="band rule" id="about">
 <div class="wrap about">
-<div>
+<div class="about-head">
 <h2>お話を聞かせていた母から、童話作家へ</h2>
 <svg class="pencil-u" viewBox="0 0 180 10" aria-hidden="true"><path d="M2 6 C55 2, 120 9, 178 4"/></svg>
-<div class="portrait"><img src="../author-profile.jpg" alt="童話作家 盧咏希（ノ・ヨンヒ）" width="320" height="400"><p>盧咏希（ノ・ヨンヒ）<br>韓国・大邱生まれ<br>大邱大学大学院 修学</p></div>
+</div>
+<div class="portrait"><img src="../author-profile.jpg" alt="童話作家 盧咏希（ノ・ヨンヒ）" width="954" height="1280"><p><strong>盧咏希（ノ・ヨンヒ）</strong><br>韓国・大邱生まれ<br>大邱大学大学院 修学</p></div>
+<div class="about-copy">
 <p>寝床で息子に語って聞かせたお話が1996年『セムト』誌の「母が書いた童話」佳作として初めて活字となり、2004年毎日新聞新春文芸童話部門当選へとつながりました。以来20年以上にわたり韓国の主要文芸誌に作品を発表し続けています。</p>
 <p>「どう生きていくべきか」を自らに問いかける哲学童話を書いています。青銅の鳥や小さな汽車、毎日少しずつ大きくなる島のように、人ではないものに心を宿らせ、子どもたちが孤独や恋しさと優しく向き合えるよう導きます。挿絵も自ら描いています。</p>
 </div>
